@@ -1,0 +1,40 @@
+name: Verificar estado de frontend (Next.js)
+
+on:
+  #push:
+  #  branches: [develop]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  validate-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22.14.0'  # o la versión que estés usando
+
+      - name: Ir a la carpeta del frontend
+        working-directory: ./src
+        run: echo "Ubicado en src"
+
+      - name: Instalar dependencias
+        working-directory: ./src
+        run: npm ci
+
+      #- name: Verificar formato (lint)
+      #  working-directory: ./src
+      #  run: npm run lint
+
+      - name: Compilar el proyecto
+        working-directory: ./src
+        run: npm run build
+
+      # Descomentar si tenés tests configurados
+      # - name: Ejecutar tests
+      #   run: npm run test

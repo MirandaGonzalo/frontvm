@@ -1,0 +1,10 @@
+# Ignorar la carpeta dist/build
+dist/
+build/
+
+# Ignorar archivos específicos
+src/**/*.test.ts
+.env*
+
+# Ignorar archivos de configuración
+*.config.js
